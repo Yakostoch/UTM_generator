@@ -12,4 +12,3 @@ class AppState:
             "secret_key": ""
         }
         self.generated_hashes = []
-        sel
