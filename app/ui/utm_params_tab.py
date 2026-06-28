@@ -1,9 +1,10 @@
 import customtkinter
-
+from app.state import AppState
 class UtmParamsTab(customtkinter.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
 
+        self.app_state = AppState()
         self.base_url_label = customtkinter.CTkLabel(
             self,
             text="Базовая ссылка:"
@@ -68,6 +69,25 @@ class UtmParamsTab(customtkinter.CTkFrame):
             placeholder_text="main_button"
         )
         self.utm_content_entry.grid(row=4, column=1, padx=20, pady=10, sticky="w")
+
+        self.label = customtkinter.CTkLabel(
+            self,
+            text="Секретный ключ:"
+        )
+        self.label.grid(row=5, column=0, padx=20, pady=(20, 10), sticky="w")
+
+        self.secret_key = customtkinter.CTkEntry(
+            self,
+            width=350,
+            placeholder_text="Введите секретный ключ"
+        )
+        self.secret_key.grid(row=5, column=1, padx=20, pady=(20, 10), sticky="w")
+
+        self.generate_button = customtkinter.CTkButton(
+            self,
+            text="Сгенерировать хэши и общую utm ссылку"
+        )
+        self.generate_button.grid(row=6, column=0, padx=20, pady=10, sticky="w")
 
     def get_utm_params(self):
         return {
