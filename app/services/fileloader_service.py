@@ -1,11 +1,9 @@
-from pathlib import Path
 import csv
-from openpyxl import load_workbook
+from pathlib import Path
 
 
 class FileLoaderService:
     def load_users(self, file_path: str) -> list[dict]:
-
         path = Path(file_path)
 
         if not path.exists():
@@ -20,6 +18,12 @@ class FileLoaderService:
         raise ValueError(f"Неподдерживаемый формат файла: {path.suffix}")
 
     def _load_from_xlsx(self, path: Path) -> list[dict]:
+        try:
+            from openpyxl import load_workbook
+        except ModuleNotFoundError as error:
+            raise ModuleNotFoundError(
+                "Для загрузки Excel-файлов установите зависимость openpyxl"
+            ) from error
 
         workbook = load_workbook(path)
         sheet = workbook.active

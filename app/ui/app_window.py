@@ -1,5 +1,6 @@
 import customtkinter
 
+from app.state import AppState
 from app.ui.tabs.main_tab import MainTab
 from app.ui.tabs.upload_tab import UploadTab
 from app.ui.tabs.utm_params_tab import UtmParamsTab
@@ -10,11 +11,13 @@ class AppWindow(customtkinter.CTk):
         super().__init__()
 
         self.title("UTM Generator")
-        self.geometry("1000x650")
-        self.minsize(900, 600)
+        self.geometry("1150x720")
+        self.resizable(False, False)
 
         customtkinter.set_appearance_mode("dark")
         customtkinter.set_default_color_theme("blue")
+
+        self.app_state = AppState()
 
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(0, weight=1)
@@ -80,10 +83,10 @@ class AppWindow(customtkinter.CTk):
 
     def show_upload_tab(self):
         self.clear_content()
-        self.current_tab = UploadTab(self.content_frame)
+        self.current_tab = UploadTab(self.content_frame, app_state=self.app_state)
         self.current_tab.grid(row=0, column=0, sticky="nsew", padx=30, pady=30)
 
     def show_utm_params_tab(self):
         self.clear_content()
-        self.current_tab = UtmParamsTab(self.content_frame)
+        self.current_tab = UtmParamsTab(self.content_frame, app_state=self.app_state)
         self.current_tab.grid(row=0, column=0, sticky="nsew", padx=30, pady=30)
