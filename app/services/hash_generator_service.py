@@ -29,7 +29,7 @@ class HashGeneratorService:
             hashes.append(user_hash)
 
         self.app_state.generated_hashes = hashes
-        
+
         return hashes
 
     def _normalize_email(self, email: str) -> str:

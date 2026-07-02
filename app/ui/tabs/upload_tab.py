@@ -26,14 +26,16 @@ class UploadTab(customtkinter.CTkFrame):
 
         self.label = customtkinter.CTkLabel(
             master=self,
-            text="Загрузите файл Excel (.xlsx) или CSV (.csv):"
+            text="Загрузите файл Excel (.xlsx):"
         )
         self.label.grid(row=0, column=0, columnspan=2, padx=20, pady=(20, 10), sticky="w")
 
         self.button = customtkinter.CTkButton(
             master=self,
             text="Загрузить файл",
-            command=self.upload_file
+            command=self.upload_file,
+            fg_color="#28a742",
+            hover_color="#218838"
         )
         self.button.grid(row=1, column=0, padx=20, pady=10, sticky="w")
 
